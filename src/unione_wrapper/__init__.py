@@ -28,7 +28,7 @@ from ._settings import Settings
 from .webhook import WebhookCallback, WebhookCallbackEventsByUserItemEventsItem, WebhookCallbackEventsByUserItem
 
 __all__ = ["Settings", "Webhooks", "get_client", "get_settings"]
-__version__ = "1.3.0"
+__version__ = "1.3.1"
 
 
 @lru_cache(maxsize=None)
@@ -39,7 +39,7 @@ def get_settings() -> Settings:
 
 @lru_cache(maxsize=None)
 def _client(settings: Settings) -> UniOneClient:
-    return UniOneClient(settings.require_key(), settings.host, settings.timeout, platform="fastapi.1.3.0")
+    return UniOneClient(settings.require_key(), settings.host, settings.timeout, platform="fastapi.1.3.1")
 
 
 def get_client(settings: Settings = Depends(get_settings)) -> UniOneClient:
