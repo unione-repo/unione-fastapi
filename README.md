@@ -2,7 +2,7 @@
 
 [![FastAPI](https://img.shields.io/pypi/v/unione-fastapi)](https://pypi.org/project/unione-fastapi/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-FastAPI integration of the [UniOne Python SDK](https://github.com/unione-repo/unione-python-sdk) (``): the API client in the dependencies (`Depends(get_client)`), a webhook endpoint with signature check.
+FastAPI integration of the [UniOne Python SDK](https://github.com/unione-repo/unione-python-sdk) (`unione-sdk`): the API client in the dependencies (`Depends(get_client)`), a webhook endpoint with signature check.
 
 [API reference](https://docs.unione.io/en/web-api-ref) · Docs for LLMs: [llms.txt](https://docs.unione.io/llms.txt)
 
@@ -107,6 +107,10 @@ def send_email(client: UniOneClient = Depends(get_client)):
     ))
     return {"job_id": response.job_id}
 ```
+
+### Errors
+
+The API client raises the SDK `ApiError`: `kind` tells what failed (api, network, timeout, invalid_response, invalid_request), `retryable` whether a repeat may succeed (network, timeout, HTTP 429 and 5xx), `hint` how to fix an API error and `api_message` the message of the API.
 
 ## No domain yet: the test sandbox domain
 
